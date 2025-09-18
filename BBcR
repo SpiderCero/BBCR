@@ -264,7 +264,7 @@ tasks:
 
   - action: download_github
     src: https://github.com/BryceCanyonCounty/bcc-customblips
-    ref: main
+    ref: master
     dest: ./resources/[bcc]/bcc-customblips
 
   - action: download_github
