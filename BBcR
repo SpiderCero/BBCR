@@ -21,11 +21,10 @@ tasks:
     ref: main
     dest: ./resources/[vorp]/ks_multijob
 
- - action: download_github
+   - action: download_github
     src: https://github.com/VORPCORE/vorp_animations
     ref: main
     dest: ./resources/[vorp]/vorp_animations
-
 
   # -----------------------------
   # 📂 BCC SCRIPTS (BryceCanyonCounty)
@@ -420,4 +419,4 @@ tasks:
       ensure bcc-zonenotify
       ensure rdr3-nativedb-data
       ensure vorp_txadmin_recipe
-    
+      ensure vorp_animations
