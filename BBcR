@@ -91,11 +91,6 @@ tasks:
     dest: ./resources/[bcc]/bcc-crypt
 
   - action: download_github
-    src: https://github.com/BryceCanyonCounty/bcc-customblips
-    ref: main
-    dest: ./resources/[bcc]/bcc-customblips
-
-  - action: download_github
     src: https://github.com/BryceCanyonCounty/bcc-deferralcards
     ref: main
     dest: ./resources/[bcc]/bcc-deferralcards
