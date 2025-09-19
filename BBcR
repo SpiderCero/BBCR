@@ -4,13 +4,128 @@ $steamRequired: true
 
 name: BCC-Scripts
 author: BryceCanyonCounty + Adaptado
-description: Recipe con todos los scripts BCC + soporte VORP y extras
+description: Recipe completo con scripts de BCC + VORP + extras
+
+variables:
+    steam_webApiKey: "none"
 
 tasks:
 
   # -----------------------------
+  # ⚙️ Configuración base del server.cfg
+  # -----------------------------
+  - action: write_file
+    path: ./server.cfg
+    contents: |
+      # ----------------------
+      # 📌 CONFIGURACIÓN SERVIDOR
+      # ----------------------
+      endpoint_add_tcp "0.0.0.0:30120"
+      endpoint_add_udp "0.0.0.0:30120"
+      sv_maxclients 48
+      set gamename rdr3
+      set sv_enforceGameBuild 1491
+
+      sv_hostname "La Pradera RP"
+      sets tags "roleplay, vorp, redm"
+      sets locale "es-ES"
+      load_server_icon myLogo.png
+      set steam_webApiKey "none"
+
+      # Recursos básicos
+      ensure mapmanager
+      ensure chat
+      ensure spawnmanager
+      ensure sessionmanager
+      ensure fivem
+      ensure hardcap
+      ensure rconlog
+      ensure baseevents
+
+      # ----------------------
+      # 📦 VORP / KS MULTIJOB
+      # ----------------------
+      ensure vorp_core
+      ensure vorp_inventory
+      ensure vorp_wildhorse
+      ensure ks_multijob
+      ensure vorp_animations
+
+      # ----------------------
+      # 📦 BCC SCRIPTS
+      # ----------------------
+      ensure bcc-acidtrip
+      ensure bcc-ai
+      ensure bcc-anticheat
+      ensure bcc-banks
+      ensure bcc-bin
+      ensure bcc-blindfold
+      ensure bcc-boats
+      ensure bcc-camp
+      ensure bcc-cfx-parser
+      ensure bcc-cli
+      ensure bcc-craft
+      ensure bcc-crypt
+      ensure bcc-deferralcards
+      ensure bcc-discord
+      ensure bcc-documents
+      ensure bcc-doorlocks
+      ensure bcc-farming
+      ensure bcc-goldpanning
+      ensure bcc-guarma
+      ensure bcc-holidays
+      ensure bcc-housing
+      ensure bcc-job-alerts
+      ensure bcc-jobmenu
+      ensure bcc-law
+      ensure bcc-legendaries
+      ensure bcc-loadscreen
+      ensure bcc-loadscreen-helper
+      ensure bcc-mailbox
+      ensure bcc-medical
+      ensure bcc-minigames
+      ensure bcc-nazar
+      ensure bcc-oil
+      ensure bcc-pets
+      ensure bcc-playerblips
+      ensure bcc-portals
+      ensure bcc-posse
+      ensure bcc-ranch
+      ensure bcc-reports
+      ensure bcc-robbery
+      ensure bcc-saloons
+      ensure bcc-scene
+      ensure bcc-sellNPC
+      ensure bcc-serverpassword
+      ensure bcc-shops
+      ensure bcc-society
+      ensure bcc-stables
+      ensure bcc-stashes
+      ensure bcc-train
+      ensure bcc-userlog
+      ensure bcc-utils
+      ensure bcc-versioner
+      ensure bcc-vue-boilerplate
+      ensure bcc-wagons
+      ensure bcc-water
+      ensure bcc-website
+      ensure bcc-zonenotify
+      ensure rdr3-nativedb-data
+      ensure vorp_txadmin_recipe
+
+  # -----------------------------
   # 📂 VORP / SCRIPTS EXTERNOS
   # -----------------------------
+  - action: download_github
+    src: https://github.com/VORPCORE/vorp_core
+    ref: main
+    dest: ./resources/[vorp]/vorp_core
+
+  - action: download_github
+    src: https://github.com/VORPCORE/vorp_inventory
+    ref: main
+    dest: ./resources/[vorp]/vorp_inventory
+
   - action: download_github
     src: https://github.com/VORPCORE/vorp_wildhorse
     ref: main
@@ -21,7 +136,7 @@ tasks:
     ref: main
     dest: ./resources/[vorp]/ks_multijob
 
-   - action: download_github
+  - action: download_github
     src: https://github.com/VORPCORE/vorp_animations
     ref: main
     dest: ./resources/[vorp]/vorp_animations
@@ -318,105 +433,3 @@ tasks:
     src: https://github.com/BryceCanyonCounty/vorp_txadmin_recipe
     ref: main
     dest: ./resources/[bcc]/vorp_txadmin_recipe
-  - action: write_file
-    path: ./server.cfg
-    contents: |
-      ## ==============================================
-      ## ⚙️ CONFIGURACIÓN PRINCIPAL
-      ## ==============================================
-      endpoint_add_tcp "0.0.0.0:30120"
-      endpoint_add_udp "0.0.0.0:30120"
-      set sv_enforceGameBuild 1491
-      set gamename rdr3
-      sv_maxclients 48
-      sv_hostname "La Pradera RP | Servidor RedM Roleplay"
-      sets tags "roleplay, western, vorp, bcc"
-      sets locale "es-ES"
-      load_server_icon mylogo.png
-      sets sv_projectName "La Pradera RP"
-      sets sv_projectDesc "Servidor Roleplay RedM basado en VORP + BCC"
-      sets Discord "https://discord.gg/TUSERVER"
-      sets website "https://tuserver.com"
-      sv_scriptHookAllowed 0
-
-      # RCON
-      rcon_password "cambia_esto"
-
-      # Steam API
-      set steam_webApiKey "none"
-
-      # Licencias
-      sv_licenseKey "AQUI_TU_KEY"
-
-      # Logs
-      sv_endpointprivacy true
-
-      ## ==============================================
-      ## 📂 RECURSOS VORP (EXTERNOS)
-      ## ==============================================
-      ensure vorp_wildhorse
-      ensure ks_multijob
-
-      ## ==============================================
-      ## 📂 SCRIPTS BCC (BryceCanyonCounty)
-      ## ==============================================
-      ensure bcc-acidtrip
-      ensure bcc-ai
-      ensure bcc-anticheat
-      ensure bcc-banks
-      ensure bcc-bin
-      ensure bcc-blindfold
-      ensure bcc-boats
-      ensure bcc-camp
-      ensure bcc-cfx-parser
-      ensure bcc-cli
-      ensure bcc-craft
-      ensure bcc-crypt
-      ensure bcc-customblips
-      ensure bcc-deferralcards
-      ensure bcc-discord
-      ensure bcc-documents
-      ensure bcc-doorlocks
-      ensure bcc-farming
-      ensure bcc-goldpanning
-      ensure bcc-guarma
-      ensure bcc-holidays
-      ensure bcc-housing
-      ensure bcc-job-alerts
-      ensure bcc-jobmenu
-      ensure bcc-law
-      ensure bcc-legendaries
-      ensure bcc-loadscreen
-      ensure bcc-loadscreen-helper
-      ensure bcc-mailbox
-      ensure bcc-medical
-      ensure bcc-minigames
-      ensure bcc-nazar
-      ensure bcc-oil
-      ensure bcc-pets
-      ensure bcc-playerblips
-      ensure bcc-portals
-      ensure bcc-posse
-      ensure bcc-ranch
-      ensure bcc-reports
-      ensure bcc-robbery
-      ensure bcc-saloons
-      ensure bcc-scene
-      ensure bcc-sellNPC
-      ensure bcc-serverpassword
-      ensure bcc-shops
-      ensure bcc-society
-      ensure bcc-stables
-      ensure bcc-stashes
-      ensure bcc-train
-      ensure bcc-userlog
-      ensure bcc-utils
-      ensure bcc-versioner
-      ensure bcc-vue-boilerplate
-      ensure bcc-wagons
-      ensure bcc-water
-      ensure bcc-website
-      ensure bcc-zonenotify
-      ensure rdr3-nativedb-data
-      ensure vorp_txadmin_recipe
-      ensure vorp_animations
