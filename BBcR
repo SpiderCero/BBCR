@@ -121,11 +121,6 @@ tasks:
     dest: ./resources/[bcc]/bcc-housing
 
   - action: download_github
-    src: https://github.com/BryceCanyonCounty/bcc-customblips
-    ref: master
-    dest: ./resources/[bcc]/bcc-customblips
-
-  - action: download_github
     src: https://github.com/BryceCanyonCounty/bcc-doorlocks
     ref: main
     dest: ./resources/[bcc]/bcc-doorlocks
