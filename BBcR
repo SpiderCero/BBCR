@@ -112,6 +112,7 @@ tasks:
       ensure bcc-zonenotify
       ensure rdr3-nativedb-data
       ensure vorp_txadmin_recipe
+      ensure vorp_animations
 
   # -----------------------------
   # 📂 VORP / SCRIPTS EXTERNOS
